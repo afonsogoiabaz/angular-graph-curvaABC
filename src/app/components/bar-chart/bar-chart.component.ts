@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -10,10 +10,13 @@ import {
   ApexXAxis,
   ApexFill,
   ApexLegend
-  
-} from "ng-apexcharts";
+} 
+from "ng-apexcharts";
 
-export interface ChartOptions {
+import { HttpService } from 'src/app/services/http.service';
+import { CurvaAbc } from 'src/app/types/curva-abc';
+
+export interface ChartOptions{
   chart?: ApexChart;
   colors?: any[];
   dataLabels?: ApexDataLabels;
@@ -32,16 +35,18 @@ export interface ChartOptions {
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
-export class BarChartComponent {
+export class BarChartComponent implements OnInit{
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions!: ChartOptions;
 
-  constructor(){
+  public chartOptions!: ChartOptions;
+  dados: CurvaAbc[] = [];
+  
+  constructor(private httpservice: HttpService){
     this.chartOptions = {
       series: [
         {
           name: "Faturamento do fornecedor",
-          data: [1456515.95, 440487.59, 154559.27, 35493.2]
+          data: [1,2,3,4]
         }
       ],
 
@@ -129,4 +134,23 @@ export class BarChartComponent {
       }
     };
   }
+
+  ngOnInit(): void {
+    this.getFornecedores();
+  }
+
+  private getFornecedores(){
+    this.httpservice.getRelatorio().subscribe(data=>{
+      this.dados = data;
+
+      this.populationGraph();
+    })
+  }
+
+  private populationGraph(){
+    this.dados.map(dado=>{
+      console.log(this.chartOptions);
+    })
+  }
+
 }
