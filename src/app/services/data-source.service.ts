@@ -9,7 +9,6 @@ import { HttpService } from './http.service';
 
 export class DataSourceService extends DataSource<CurvaAbc> {
   relatorio = new BehaviorSubject<CurvaAbc[]>([]);
-  isLoading = new BehaviorSubject<boolean>(false);
 
   constructor(private httpService: HttpService){
     super();
@@ -24,10 +23,8 @@ export class DataSourceService extends DataSource<CurvaAbc> {
   }
 
   loadRelatorio(): void {
-    this.isLoading.next(true);
     this.httpService.getRelatorio().subscribe(dados =>{
       this.relatorio.next(dados);
-      this.isLoading.next(false);
     })
   }
 }
