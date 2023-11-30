@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component  } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 
 interface Relatorio {
@@ -8,11 +8,6 @@ interface Relatorio {
   total: number
 }
 
-
-const ELEMENT_DATA: Relatorio[] = [
-  
-];
-
 @Component({
   selector: 'app-datatable',
   templateUrl: './datatable.component.html',
@@ -20,18 +15,24 @@ const ELEMENT_DATA: Relatorio[] = [
 })
 export class DatatableComponent {
 
-  dados: Relatorio[] = [];
+  dados: Relatorio[] = [
+    {fornec_id: 1, nome: 'GRAM INDUSTRIA E COMERCIO LTDA', quantidade: 50745, total: 1456515.95},
+    {fornec_id: 8, nome: '8 GRAM INDUSTRIA E COMERCIO LTDA', quantidade: 26048, total: 440487.59},
+    {fornec_id: 5, nome: 'ANTONELLA COSMETICOS EIRELI', quantidade: 9327, total: 154559.27},
+    {fornec_id: 7, nome: 'GRAM INDUSTRIA E COMERCIO LTDA', quantidade: 5368, total: 35493.2}
+  ];
 
-  constructor(private httpservice: HttpService){}
+  constructor(private httpservice: HttpService){
+    this.obterDados();
+  }
 
-  ngOnInit(){
-    this.httpservice.getRelatorio().subscribe({
-      next: (dados) =>{
-        console.log(dados);
-      }
+  obterDados(){
+    this.httpservice.getRelatorio().subscribe(data =>{
+      console.log(data);
+      this.dados = data;
     })
   }
 
-  displayedColumns: string[] = ['id', 'nome', 'quantidade', 'total'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['fornec_id', 'nome', 'quantidade', 'total'];
+  dataSource = this.dados;
 }

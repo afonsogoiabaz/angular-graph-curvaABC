@@ -40,8 +40,8 @@ export class BarChartComponent {
     this.chartOptions = {
       series: [
         {
-          name: "Faturamento por fornecedor",
-          data: [2.3, 3.1, 4.0, 10.1]
+          name: "Faturamento do fornecedor",
+          data: [1456515.95, 440487.59, 154559.27, 35493.2]
         }
       ],
 
@@ -61,7 +61,7 @@ export class BarChartComponent {
       dataLabels: {
         enabled: true,
         formatter: function(val) {
-          return val + "%";
+          return "R$ " + val;
         },
         offsetY: -30,
         style: {
@@ -72,10 +72,10 @@ export class BarChartComponent {
 
       xaxis: {
         categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Dec"
+          "GRAM INDUSTRIA",
+          "8 GRAM INDUSTRIA",
+          "ANTONELLA COSMETICOS",
+          "GRAM INDUSTRIA"
         ],
         position: "bottom",
         labels: {
@@ -112,7 +112,7 @@ export class BarChartComponent {
         labels: {
           show: true,
           formatter: function(val) {
-            return val + "%";
+            return "R$ "+ val;
           }
         }
       },
