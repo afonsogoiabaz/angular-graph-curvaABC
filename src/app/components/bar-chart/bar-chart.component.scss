@@ -1,15 +1,23 @@
 .content{
-  width: 100%;
   height: 100%;
+  padding: 1rem;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  
+}
+
+.content h2{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.content .table{
+  width: 45%;
 }
 
 #chart {
   min-width: 350px;
-  width: 30%;
-  margin: 0 auto;
-  display: none;
+  width: 45%;
 }
+
+
