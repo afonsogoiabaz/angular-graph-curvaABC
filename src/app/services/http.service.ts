@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-interface Relatorio {
-  fornec_id: number,
-  nome: string,
-  quantidade: number,
-  total: number
-}
+import { CurvaAbc } from '../types/curva-abc';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +12,8 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  getRelatorio(): Observable<Relatorio[]> {
+  getRelatorio(): Observable<CurvaAbc[]> {
 
-    return this.http.get<Relatorio[]>(this.apiUrl);
+    return this.http.get<CurvaAbc[]>(this.apiUrl);
   }
 }
