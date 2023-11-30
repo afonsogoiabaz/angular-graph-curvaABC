@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 
+import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 
@@ -19,9 +22,9 @@ import { DatatableComponent } from './components/datatable/datatable.component';
     BrowserModule,
     NgApexchartsModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
   ],
-  providers: [],
+  providers: [importProvidersFrom(HttpClientModule),],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
