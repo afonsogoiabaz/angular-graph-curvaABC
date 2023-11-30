@@ -4,6 +4,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { AppComponent } from './app.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
   ],
   imports: [
     BrowserModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
