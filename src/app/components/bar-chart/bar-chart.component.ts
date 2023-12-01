@@ -144,11 +144,13 @@ export class BarChartComponent implements OnInit{
     end: new FormControl(new Date(year, month, day)),
   });
 
+  formattFilterDates = {
+    start: '',
+    end: ''
+  }
+
   ngOnInit(): void {
     this.getFornecedores();
-
-    // console.log(moment(this.filterDate.value.start).format( "DD/MM/YYYY"))
-    console.log(this.filterDate);
   }
 
 
@@ -173,5 +175,12 @@ export class BarChartComponent implements OnInit{
         categories: this.data_categories
       }
     })
+  }
+
+  filtersData(){
+    this.formattFilterDates.start = moment(this.filterDate.value.start).format( "DD/MM/YYYY");
+    this.formattFilterDates.end = moment(this.filterDate.value.end).format( "DD/MM/YYYY");
+
+    console.log(this.formattFilterDates)
   }
 }

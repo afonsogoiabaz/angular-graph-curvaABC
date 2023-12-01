@@ -17,6 +17,5 @@ export class DatatableComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource.loadRelatorio()
-    console.log(this.dataSource);
   }
 }
