@@ -12,9 +12,11 @@ import {
   ApexLegend
 } 
 from "ng-apexcharts";
+import {FormGroup, FormControl} from '@angular/forms';
 
 import { HttpService } from 'src/app/services/http.service';
 import { CurvaAbc } from 'src/app/types/curva-abc';
+import * as moment from 'moment';
 
 export interface ChartOptions{
   chart?: ApexChart;
@@ -29,6 +31,11 @@ export interface ChartOptions{
   yaxis?: ApexYAxis | ApexYAxis[];
   legend?: ApexLegend;
 }
+
+const today = new Date();
+const month = today.getMonth();
+const year = today.getFullYear();
+const day = today.getDay();
 
 @Component({
   selector: 'app-bar-chart',
@@ -132,9 +139,18 @@ export class BarChartComponent implements OnInit{
     };
   }
 
+  filterDate = new FormGroup({
+    start: new FormControl(new Date(year, month, day)),
+    end: new FormControl(new Date(year, month, day)),
+  });
+
   ngOnInit(): void {
     this.getFornecedores();
+
+    // console.log(moment(this.filterDate.value.start).format( "DD/MM/YYYY"))
+    console.log(this.filterDate);
   }
+
 
   private getFornecedores(){
     this.httpservice.getRelatorio().subscribe(data =>{
