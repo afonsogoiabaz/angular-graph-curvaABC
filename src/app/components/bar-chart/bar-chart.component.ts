@@ -36,19 +36,19 @@ export interface ChartOptions{
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit{
-  @ViewChild("chart") chart!: ChartComponent;
+  @ViewChild("chart", {static: false}) chart!: ChartComponent;
 
   public chartOptions!: ChartOptions;
   dados: CurvaAbc[] = [];
-  data_series: number[] = [1];
-  data_categories: string[] = ['a'];
+  data_series: number[] = [];
+  data_categories: string[] = [];
   
   constructor(private httpservice: HttpService){
     this.chartOptions = {
       series: [
         {
           name: "Faturamento do fornecedor",
-          data: this.data_series
+          data: []
         }
       ],
 
@@ -78,7 +78,7 @@ export class BarChartComponent implements OnInit{
       },
 
       xaxis: {
-        categories: this.data_categories,
+        categories: [],
         position: "bottom",
         labels: {
           offsetY: 0
@@ -137,20 +137,24 @@ export class BarChartComponent implements OnInit{
   }
 
   private getFornecedores(){
-    this.httpservice.getRelatorio().subscribe(data=>{
-      this.dados = data;
-
-      this.populationGraph();
+    this.httpservice.getRelatorio().subscribe(data =>{
+      return this.populationGraph(data);
+      
     })
   }
 
-  private populationGraph(){
+  private populationGraph(array: CurvaAbc[] = []){
+    array.map(async dataset=>{
+      this.data_series.push(dataset.total);
+      this.data_categories.push(dataset.nome);
 
-    this.dados.map(dado=>{
-      this.data_series.push(dado.total);
-      this.data_categories.push(dado.nome);
+      this.chartOptions.series = [{
+        data: this.data_series
+      }]
+
+      this.chartOptions.xaxis = {
+        categories: this.data_categories
+      }
     })
-    console.log([this.data_series, this.data_categories])
   }
-
 }
