@@ -40,13 +40,15 @@ export class BarChartComponent implements OnInit{
 
   public chartOptions!: ChartOptions;
   dados: CurvaAbc[] = [];
+  data_series: number[] = [1];
+  data_categories: string[] = ['a'];
   
   constructor(private httpservice: HttpService){
     this.chartOptions = {
       series: [
         {
           name: "Faturamento do fornecedor",
-          data: [1,2,3,4]
+          data: this.data_series
         }
       ],
 
@@ -76,12 +78,7 @@ export class BarChartComponent implements OnInit{
       },
 
       xaxis: {
-        categories: [
-          "GRAM INDUSTRIA",
-          "8 GRAM INDUSTRIA",
-          "ANTONELLA COSMETICOS",
-          "GRAM INDUSTRIA"
-        ],
+        categories: this.data_categories,
         position: "bottom",
         labels: {
           offsetY: 0
@@ -148,9 +145,12 @@ export class BarChartComponent implements OnInit{
   }
 
   private populationGraph(){
+
     this.dados.map(dado=>{
-      console.log(this.chartOptions);
+      this.data_series.push(dado.total);
+      this.data_categories.push(dado.nome);
     })
+    console.log([this.data_series, this.data_categories])
   }
 
 }
