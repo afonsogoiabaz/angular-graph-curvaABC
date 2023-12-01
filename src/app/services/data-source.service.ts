@@ -27,4 +27,10 @@ export class DataSourceService extends DataSource<CurvaAbc> {
       this.relatorio.next(dados);
     })
   }
+
+  loadFilterData(dti: any, dtf: any): void {
+    this.httpService.getFilterDATA(dti, dtf).subscribe(dados=>{
+      this.relatorio.next(dados);
+    })
+  }
 }

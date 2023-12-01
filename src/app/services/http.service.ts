@@ -16,4 +16,9 @@ export class HttpService {
 
     return this.http.get<CurvaAbc[]>(this.apiUrl);
   }
+
+  getFilterDATA(data_inicial: any, data_final: any): Observable<CurvaAbc[]> {
+
+    return this.http.get<CurvaAbc[]>(`${this.apiUrl}/${data_inicial}/${data_final}`);
+  }
 }

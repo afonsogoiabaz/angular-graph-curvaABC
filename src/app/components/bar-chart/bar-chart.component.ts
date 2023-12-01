@@ -157,12 +157,14 @@ export class BarChartComponent implements OnInit{
   private getFornecedores(){
     this.httpservice.getRelatorio().subscribe(data =>{
       return this.populationGraph(data);
-      
     })
   }
 
   private populationGraph(array: CurvaAbc[] = []){
-    array.map(async dataset=>{
+    this.data_series = [];
+    this.data_categories = [];
+    array.map(dataset=>{
+      
       this.data_series.push(dataset.total);
       this.data_categories.push(dataset.nome);
 
@@ -178,9 +180,12 @@ export class BarChartComponent implements OnInit{
   }
 
   filtersData(){
-    this.formattFilterDates.start = moment(this.filterDate.value.start).format( "DD/MM/YYYY");
-    this.formattFilterDates.end = moment(this.filterDate.value.end).format( "DD/MM/YYYY");
+    this.formattFilterDates.start = moment(this.filterDate.value.start).format( "YYYY-MM-DD");
+    this.formattFilterDates.end = moment(this.filterDate.value.end).format( "YYYY-MM-DD");
 
-    console.log(this.formattFilterDates)
+    this.httpservice.getFilterDATA(this.formattFilterDates.start, this.formattFilterDates.end).subscribe(data=>{
+      console.log(data);
+      return this.populationGraph(data);
+    })
   }
 }
