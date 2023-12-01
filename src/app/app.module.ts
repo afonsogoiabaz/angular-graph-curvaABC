@@ -7,6 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 
@@ -26,7 +31,13 @@ import { DataSourceService } from './services/data-source.service';
     NgApexchartsModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [importProvidersFrom(HttpClientModule), HttpService, DataSourceService],
   bootstrap: [AppComponent]

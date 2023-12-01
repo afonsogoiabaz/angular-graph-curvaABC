@@ -3,6 +3,23 @@
     <img src="assets/images/png/logo.png" height="40">
     <span>Dashboard Administrativo</span>
   </mat-toolbar>
+
+  <div class="container-filters">
+    <mat-form-field appearance="outline">
+      <mat-label>Período filtrado</mat-label>
+      <mat-date-range-input
+        [formGroup]="filterDate"
+        [rangePicker]="campaignOnePicker">
+        <input matStartDate placeholder="Start date" formControlName="start">
+        <input matEndDate placeholder="End date" formControlName="end">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+      <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+    </mat-form-field>
+
+    <button mat-stroked-button>Filtrar Resultados</button>
+
+  </div>
   
   <div class="content">
     <app-datatable class="table"></app-datatable>
