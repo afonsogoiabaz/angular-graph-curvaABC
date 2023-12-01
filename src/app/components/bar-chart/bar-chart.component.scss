@@ -1,9 +1,32 @@
+.toolbar{
+  background: #14152d;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.toolbar img{
+  position: absolute;
+  
+  left: 15px;
+}
+
+.toolbar span{
+  color: white;
+  text-align: center;
+}
+
+.toolbar span b{
+  font-weight: 900;
+}
+
 .content{
   height: 100%;
   padding: 1rem;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .content h2{

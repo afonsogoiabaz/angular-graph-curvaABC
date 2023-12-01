@@ -1,17 +1,24 @@
-<div class="content">
-  <app-datatable class="table"></app-datatable>
-
-  <div id="chart">
-    <apx-chart 
-    [series]="chartOptions.series!" 
-    [chart]="chartOptions.chart!" 
-    [dataLabels]="chartOptions.dataLabels!"
-    [plotOptions]="chartOptions.plotOptions!"
-    [yaxis]="chartOptions.yaxis!"
-    [xaxis]="chartOptions.xaxis!"
-    [fill]="chartOptions.fill!"
-    [title]="chartOptions.title!" 
-    >
-  </apx-chart>
+<main>
+  <mat-toolbar class="toolbar">
+    <img src="assets/images/png/logo.png" height="40">
+    <span>Dashboard Administrativo</span>
+  </mat-toolbar>
+  
+  <div class="content">
+    <app-datatable class="table"></app-datatable>
+  
+    <div id="chart">
+      <apx-chart 
+      [series]="chartOptions.series!" 
+      [chart]="chartOptions.chart!" 
+      [dataLabels]="chartOptions.dataLabels!"
+      [plotOptions]="chartOptions.plotOptions!"
+      [yaxis]="chartOptions.yaxis!"
+      [xaxis]="chartOptions.xaxis!"
+      [fill]="chartOptions.fill!"
+      [title]="chartOptions.title!" 
+      >
+    </apx-chart>
+    </div>
   </div>
-</div>
+</main>

@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
-import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { DatatableComponent } from './components/datatable/datatable.component';
 import { HttpService } from './services/http.service';
 import { DataSourceService } from './services/data-source.service';
@@ -25,6 +26,7 @@ import { DataSourceService } from './services/data-source.service';
     NgApexchartsModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatToolbarModule
   ],
   providers: [importProvidersFrom(HttpClientModule), HttpService, DataSourceService],
   bootstrap: [AppComponent]

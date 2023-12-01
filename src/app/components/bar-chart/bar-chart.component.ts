@@ -53,7 +53,7 @@ export class BarChartComponent implements OnInit{
       ],
 
       chart: {
-        height: 350,
+        height: 600,
         type: "bar",
       },
 
@@ -106,7 +106,7 @@ export class BarChartComponent implements OnInit{
 
       yaxis: {
         axisBorder: {
-          show: false
+          show: true
         },
         axisTicks: {
           show: false
@@ -149,6 +149,7 @@ export class BarChartComponent implements OnInit{
       this.data_categories.push(dataset.nome);
 
       this.chartOptions.series = [{
+        name: 'Faturamento do fornecedor',
         data: this.data_series
       }]
 
