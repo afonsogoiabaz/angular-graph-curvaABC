@@ -22,7 +22,7 @@
   </div>
   
   <div class="content">
-    <div class="table">
+    <div class="table" *ngIf="dataSource.length != 0">
       <h2>Relatório de curva ABC (Fornecedor)</h2>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
     
@@ -51,7 +51,7 @@
       </table>
     </div>
   
-    <div id="chart">
+    <div id="chart" *ngIf="dataSource.length != 0">
       <apx-chart 
       [series]="chartOptions.series!" 
       [chart]="chartOptions.chart!" 
@@ -64,5 +64,12 @@
       >
     </apx-chart>
     </div>
+    <div class="content-nolength" *ngIf="dataSource.length <= 0">
+  
+      <span>Não há resultados a serem exibidos para o período selecionado.</span>
+      <br>
+      <span>Por favor, filtre novamente.</span>
+    </div>
   </div>
+
 </main>
