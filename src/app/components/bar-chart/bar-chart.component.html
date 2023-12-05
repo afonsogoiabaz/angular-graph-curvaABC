@@ -9,12 +9,12 @@
       <mat-label>Período filtrado</mat-label>
       <mat-date-range-input
         [formGroup]="filterDate"
-        [rangePicker]="campaignOnePicker">
+        [rangePicker]="periodofiltrado">
         <input matStartDate placeholder="Start date" formControlName="start">
         <input matEndDate placeholder="End date" formControlName="end">
       </mat-date-range-input>
-      <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-      <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+      <mat-datepicker-toggle matIconSuffix [for]="periodofiltrado"></mat-datepicker-toggle>
+      <mat-date-range-picker #periodofiltrado></mat-date-range-picker>
     </mat-form-field>
 
     <button mat-stroked-button (click)="filtersData()">Filtrar Resultados</button>
