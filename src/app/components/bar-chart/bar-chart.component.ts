@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -13,7 +13,6 @@ import {
 } 
 from "ng-apexcharts";
 import {FormGroup, FormControl} from '@angular/forms';
-
 import { HttpService } from 'src/app/services/http.service';
 import { CurvaAbc } from 'src/app/types/curva-abc';
 import * as moment from 'moment';
@@ -42,13 +41,15 @@ const day = today.getDay();
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
-export class BarChartComponent implements OnInit{
+export class BarChartComponent{
   @ViewChild("chart", {static: false}) chart!: ChartComponent;
 
   public chartOptions!: ChartOptions;
-  dados: CurvaAbc[] = [];
   data_series: number[] = [];
   data_categories: string[] = [];
+
+  displayedColumns: string[] = ['fornec_id', 'nome', 'quantidade', 'total'];
+  dataSource: CurvaAbc[] = [];
   
   constructor(private httpservice: HttpService){
     this.chartOptions = {
@@ -149,34 +150,39 @@ export class BarChartComponent implements OnInit{
     end: ''
   }
 
-  ngOnInit(): void {
-    this.getFornecedores();
-  }
-
-
-  private getFornecedores(){
-    this.httpservice.getRelatorio().subscribe(data =>{
-      return this.populationGraph(data);
-    })
-  }
-
-  private populationGraph(array: CurvaAbc[] = []){
+  private populationGraphTable(array: CurvaAbc[] = []){
     this.data_series = [];
     this.data_categories = [];
-    array.map(dataset=>{
-      
-      this.data_series.push(dataset.total);
-      this.data_categories.push(dataset.nome);
-
-      this.chartOptions.series = [{
-        name: 'Faturamento do fornecedor',
+    
+    this.chartOptions.series = [
+      {
         data: this.data_series
-      }]
-
-      this.chartOptions.xaxis = {
-        categories: this.data_categories
       }
-    })
+    ];
+
+    this.chartOptions.xaxis = {
+      categories: this.data_categories
+    };
+
+    this.dataSource = array;
+    console.log(array);
+
+    if(array.length != 0){
+      array.map(dataset=>{
+      
+        this.data_series.push(dataset.total);
+        this.data_categories.push(dataset.nome);
+  
+        this.chartOptions.series = [{
+          name: 'Faturamento do fornecedor',
+          data: this.data_series
+        }]
+  
+        this.chartOptions.xaxis = {
+          categories: this.data_categories
+        }
+      })
+    }
   }
 
   filtersData(){
@@ -184,8 +190,8 @@ export class BarChartComponent implements OnInit{
     this.formattFilterDates.end = moment(this.filterDate.value.end).format( "YYYY-MM-DD");
 
     this.httpservice.getFilterDATA(this.formattFilterDates.start, this.formattFilterDates.end).subscribe(data=>{
-      console.log(data);
-      return this.populationGraph(data);
+      this.dataSource = data;
+      return this.populationGraphTable(data);
     })
   }
 }

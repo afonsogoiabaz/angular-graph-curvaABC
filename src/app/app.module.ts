@@ -16,15 +16,12 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
-import { DatatableComponent } from './components/datatable/datatable.component';
 import { HttpService } from './services/http.service';
-import { DataSourceService } from './services/data-source.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     BarChartComponent,
-    DatatableComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +36,7 @@ import { DataSourceService } from './services/data-source.service';
     MatFormFieldModule,
     MatButtonModule
   ],
-  providers: [importProvidersFrom(HttpClientModule), HttpService, DataSourceService],
+  providers: [importProvidersFrom(HttpClientModule), HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
