@@ -15,13 +15,13 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { NgApexchartsModule } from 'ng-apexcharts';
 
-import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { CurvaAbcViewComponent } from './pages/curva-abc-view/curva-abc-view.component';
 import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarChartComponent,
+    CurvaAbcViewComponent,
   ],
   imports: [
     BrowserModule,

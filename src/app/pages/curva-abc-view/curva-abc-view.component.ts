@@ -38,10 +38,10 @@ const day = today.getDay();
 
 @Component({
   selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  templateUrl: './curva-abc-view.component.html',
+  styleUrls: ['./curva-abc-view.component.scss']
 })
-export class BarChartComponent{
+export class CurvaAbcViewComponent{
   @ViewChild("chart", {static: false}) chart!: ChartComponent;
 
   public chartOptions!: ChartOptions;
